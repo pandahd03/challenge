@@ -11,7 +11,7 @@ def main(indir):
     data_split = 0.8
     fps =70
 
-    data, labels, sr, hoplength = load_data(indir,methode="onsets", use_extra=True, fps=fps)
+    data, labels, sr, hoplength = load_data(indir,methode="onsets", use_extra=False, fps=fps)
     
     print("Data loaded")
 
@@ -44,13 +44,14 @@ def main(indir):
 
     #train(model, train_dataloader, val_dataloader, optimizer, loss_fn, num_epochs, device=device, save_model=True, model_name="cnn3")
 
-    model_path = r"C:\Users\Jakob S\AI-Studium\6 Semester\Audio_and_Music_Processing\challenge\trained_models\cnn2.pt"
+    model_path = os.getcwd()+r"\trained_models\cnn2.pt"
 
     #evaluate onsets
     #f1 = eval_o(model_path,complete_dataset,CNN_model2,fps,sr,hoplength, threshold=0.4)
     #print(f1)
 
     #evaluate tempos
+
     p_score = eval_t(model_path, tempo_dataset, CNN_model2)
     print(p_score)
 
@@ -64,9 +65,6 @@ def main(indir):
     
 
 
-
-
-
 if __name__ == "__main__":
     #run program
-    main(r"C:\Users\Jakob S\AI-Studium\6 Semester\Audio_and_Music_Processing\challenge\data")
+    main(os.getcwd()+r"\data")
